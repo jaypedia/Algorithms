@@ -10,3 +10,8 @@ function solution(arr) {
   }
   return Number(str) % sum ? false : true;
 }
+
+// Other's solution
+function solution2(n) {
+  return !(n % (n + '').split('').reduce((sum, current) => +sum + +current));
+}
