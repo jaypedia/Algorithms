@@ -14,3 +14,27 @@ function solution(phone_number) {
 }
 
 console.log(solution('01012345678')); // *******5678
+
+// Other's solution 1
+// repeat & substring
+function solution2(phone_number) {
+  const answer = phone_number.length - 4;
+  return '*'.repeat(answer) + phone_number.substring(answer);
+}
+
+// Other's solution 2
+// regular expressions
+function hide_numbers(s) {
+  return s.replace(/\d(?=\d{4})/g, '*');
+}
+
+// Other's solution 3
+// repeat & slice
+function hide_numbers2(s) {
+  var result = '*'.repeat(s.length - 4) + s.slice(-4);
+  return result;
+}
+
+// Other's solution 4
+// spread operator & fill & join
+const solution3 = n => [...n].fill('*', 0, n.length - 4).join('');
