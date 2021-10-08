@@ -9,3 +9,11 @@ function solution(n) {
     .sort((a, b) => b - a)
     .join('');
 }
+
+// Other's solution
+// Use reverse()
+function solution(n) {
+  const newN = n + '';
+  const newArr = newN.split('').sort().reverse().join('');
+  return +newArr;
+}
