@@ -17,3 +17,15 @@ function solution(n) {
   const newArr = newN.split('').sort().reverse().join('');
   return +newArr;
 }
+<<<<<<< HEAD
+=======
+
+// Other's solution
+// No need to use map()
+function solution(n) {
+  return +(n + '')
+    .split('')
+    .sort((a, b) => b - a)
+    .join('');
+}
+>>>>>>> e7a4714 (➕ Other's solution)
