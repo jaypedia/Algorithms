@@ -6,6 +6,11 @@ function solution(n) {
   return n % 2 ? '수박'.repeat(Math.floor(n / 2)) + '수' : '수박'.repeat(n / 2);
 }
 
+// No need to use Math.floor - repeat() count will be converted to integer
+function solution(n) {
+  return n % 2 === 0 ? '수박'.repeat(n / 2) : '수박'.repeat(n / 2) + '수';
+}
+
 // Other's solution 1
 function solution(n) {
   return '수박'.repeat(n).substring(0, n);
