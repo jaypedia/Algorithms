@@ -97,3 +97,13 @@ function star(n) {
   }
   console.log(tree);
 }
+
+// 2021-10-15 with repeat()
+function treeStar(n) {
+  let star = '';
+  for (let i = 0; i < n * 2; i += 2) {
+    star += ' '.repeat(n - i / 2) + '*'.repeat(i + 1);
+    star += '\n';
+  }
+  console.log(star);
+}
