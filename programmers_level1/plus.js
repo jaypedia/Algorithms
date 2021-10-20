@@ -23,13 +23,13 @@ function solution2(absolutes, signs) {
 
 // Other's solution 1
 // reduce
-function solution(absolutes, signs) {
+function solution3(absolutes, signs) {
   return absolutes.reduce((sum, cur, i) => sum + cur * (signs[i] ? 1 : -1), 0);
 }
 
 // Other's solution 2
 // forEach
-function solution(absolutes, signs) {
+function solution4(absolutes, signs) {
   let answer = 0;
   absolutes.forEach((v, i) => (answer += v * (signs[i] ? 1 : -1)));
   return answer;
@@ -37,7 +37,7 @@ function solution(absolutes, signs) {
 
 // Other's solution 3
 // map
-function solution(absolutes, signs) {
+function solution5(absolutes, signs) {
   let val = [];
   let answer = 0;
   absolutes.map((v, i) => val.push(signs[i] ? v : -v));
@@ -47,7 +47,7 @@ function solution(absolutes, signs) {
 
 // Other's solution 4
 // for ... in
-function solution(absolutes, signs) {
+function solution6(absolutes, signs) {
   let answer = 0;
   for (let index in absolutes) {
     if (signs[index]) answer += absolutes[index];
