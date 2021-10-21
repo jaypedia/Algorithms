@@ -15,3 +15,34 @@ function solution(n) {
 function solution(n) {
   return parseInt([...n.toString(3)].reverse().join(''), 3);
 }
+
+// Other's solution 1
+function solution(n) {
+  const answer = [];
+  while (n !== 0) {
+    answer.unshift(n % 3);
+    n = Math.floor(n / 3);
+  }
+  return answer.reduce((acc, v, i) => acc + v * Math.pow(3, i), 0);
+}
+
+// Other's solution 2
+function solution(n) {
+  var answer = 0;
+  let res = [];
+
+  const run = num => {
+    if (num < 3) {
+      res.push(num);
+      return;
+    }
+    res.push(num % 3);
+    return run(Math.floor(num / 3));
+  };
+
+  run(n);
+
+  return res
+    .map((a, i) => a * 3 ** (res.length - 1 - i))
+    .reduce((r, a) => r + a);
+}
