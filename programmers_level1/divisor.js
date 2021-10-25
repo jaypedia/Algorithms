@@ -16,3 +16,26 @@ function solution(left, right) {
 
   return answer;
 }
+
+// Other's solution 1
+function solution(left, right) {
+  var answer = 0;
+  for (let i = left; i <= right; i++) {
+    if (Number.isInteger(Math.sqrt(i))) {
+      answer -= i;
+    } else {
+      answer += i;
+    }
+  }
+  return answer;
+}
+
+// Other's solution 2
+function solution(left, right) {
+  var answer = 0;
+  for (var i = left; i <= right; i++) {
+    var temp = Math.sqrt(i);
+    answer += temp == parseInt(temp) ? -i : i;
+  }
+  return answer;
+}
