@@ -1,7 +1,13 @@
-// 2021-10-27
+// 2021-10-27 & 11-12
 // 모의고사
 
-function solution(answer) {
+// 💨💨💨 Brute-force search(exhaustive search)
+// Systematically enumerating all possible candidates for the solution
+// and checking whether each candidates satisfies the problem's statement
+// This method is used when the simplicity of implementation is more important than speed.
+
+// Solution 1
+function solution(answers) {
   let answer = [];
 
   const a1 = [1, 2, 3, 4, 5];
@@ -21,17 +27,18 @@ function solution(answer) {
   return answer;
 }
 
+// Solution 2
 function solution(answers) {
-  var answer = [];
-  const man1 = [1, 2, 3, 4, 5];
-  const man2 = [2, 1, 2, 3, 2, 4, 2, 5];
-  const man3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+  let answer = [];
+  const p1 = [1, 2, 3, 4, 5];
+  const p2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  const p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
   let count = [0, 0, 0];
 
   for (let i = 0; i < answers.length; i++) {
-    if (answers[i] == man1[i % man1.length]) count[0]++;
-    if (answers[i] == man2[i % man2.length]) count[1]++;
-    if (answers[i] == man3[i % man3.length]) count[2]++;
+    if (answers[i] == p1[i % p1.length]) count[0]++;
+    if (answers[i] == p2[i % p2.length]) count[1]++;
+    if (answers[i] == p3[i % p3.length]) count[2]++;
   }
 
   const max = Math.max(count[0], count[1], count[2]);
@@ -42,6 +49,7 @@ function solution(answers) {
   return answer;
 }
 
+// Solution 3
 function solution(answers) {
   const A = '12345'.split('');
   const B = '21232425'.split('');
@@ -67,31 +75,26 @@ function solution(answers) {
   return ret.map(p => p.id).sort();
 }
 
+// Solution 4
 function solution(answers) {
-  var answer = [];
-  var user = [
+  let answer = [];
+  const user = [
     [1, 2, 3, 4, 5],
     [2, 1, 2, 3, 2, 4, 2, 5],
     [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
   ];
-  var point = [0, 0, 0];
+  let point = [0, 0, 0];
 
-  for (var i = 0; i < answers.length; i++) {
-    if (user[0][i % 5] == answers[i]) {
-      point[0]++;
-    }
-    if (user[1][i % 8] == answers[i]) {
-      point[1]++;
-    }
-    if (user[2][i % 10] == answers[i]) {
-      point[2]++;
-    }
+  for (let i = 0; i < answers.length; i++) {
+    if (user[0][i % 5] === answers[i]) point[0]++;
+    if (user[1][i % 8] === answers[i]) point[1]++;
+    if (user[2][i % 10] === answers[i]) point[2]++;
   }
 
-  var max = Math.max.apply(null, point);
+  const max = Math.max.apply(null, point);
 
-  for (var i = 0; i < 3; i++) {
-    if (point[i] == max) answer.push(i + 1);
+  for (let i = 0; i < 3; i++) {
+    if (point[i] === max) answer.push(i + 1);
   }
 
   return answer;
