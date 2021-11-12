@@ -7,3 +7,9 @@ function solution(a, b) {
   const date = new Date(`2016-${a}-${b}`);
   return week[date.getDay()];
 }
+
+// My Second Solution (2021-11-12)
+function solution(a, b) {
+  const date = new Date(`${a}/${b}/2016`);
+  return date.toString().slice(0, 3).toUpperCase();
+}
