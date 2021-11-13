@@ -1,19 +1,27 @@
 // 2021-11-13
 // 크레인 인형뽑기 게임
 
-// My solution : ing...
+// My solution
 function solution(board, moves) {
   let answer = 0;
   let dolls = [];
+
   for (let i = 0; i < moves.length; i++) {
     for (let j = 0; j < board.length; j++) {
-      if (board[moves[i] - 1][j] !== 0) {
-        dolls.push(board[moves[i] - 1][j]);
-        board[moves[i] - 1][j] = 0;
+      if (board[j][moves[i] - 1] !== 0) {
+        if (dolls[dolls.length - 1] === board[j][moves[i] - 1]) {
+          answer += 2;
+          board[j][moves[i] - 1] = 0;
+          dolls.pop();
+        } else {
+          dolls.push(board[j][moves[i] - 1]);
+          board[j][moves[i] - 1] = 0;
+        }
+        break;
       }
     }
   }
-  console.log(dolls);
+
   return answer;
 }
 
