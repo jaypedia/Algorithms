@@ -7,3 +7,11 @@
 ### Binary Search
 
 ### Big O notation
+
+## Chapter 2. 선택 정렬
+
+### Array
+
+### Linked list
+
+### Selection sort
