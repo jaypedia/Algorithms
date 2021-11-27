@@ -30,8 +30,29 @@ var reverse = function (x) {
   }
 
   const result = +arr.join('');
-  return result > 2 ** 31 - 1 || result < (-2) ** 31 ? 0 : result;
+  return result > 2 ** 31 - 1 || result < -(2 ** 31) ? 0 : result;
 };
 
 console.log(reverse(-123));
 console.log(reverse(12230020000000));
+
+// My another solution
+var reverse2 = function (x) {
+  // 0일 경우 아래 로직을 실행하지 않고 바로 0을 리턴한다.
+  if (x === 0) return 0;
+
+  let reversed = x.toString().split('').reverse();
+  let result = 0;
+
+  if (reversed[reversed.length - 1] === '-') {
+    reversed.pop();
+    result = -reversed.join('');
+  } else {
+    result = Math.abs(reversed.join(''));
+  }
+
+  return result > 2 ** 31 - 1 || result < -(2 ** 31) ? 0 : result;
+};
+
+console.log(reverse2(-123));
+console.log(reverse2(12230020000000));
