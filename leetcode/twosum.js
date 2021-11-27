@@ -13,7 +13,7 @@ You can return the answer in any order.
  * @return {number[]}
  */
 
-// 방정식처럼 접근
+// 🤩 방정식처럼 접근
 // a + b = target
 // a = target - b
 
@@ -40,3 +40,33 @@ const twoSum = (nums, target) => {
 const nums = [3, 2, 3];
 const target = 6;
 console.log(twoSum(nums, target)); // [0,2]
+
+// ✅ My solution (11/27)
+// 이중 for문으로 모든 경우의 수 찾기
+// 인덱스 0 + 1 / 0 + 2 / 0 + 3 /1 + 2 / 1 + 3 / 2 + 3
+// 이런 식으로 요소를 하나씩 돌면서 sum을 구함
+// target과 일치하는 sum을 찾으면 그 값을 리턴
+
+var twoSum2 = function (nums, target) {
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+
+    for (let j = i + 1; j < nums.length; j++) {
+      sum += nums[j];
+
+      if (sum === target) {
+        return [i, j];
+      } else {
+        sum -= nums[j];
+      }
+    }
+
+    sum = 0;
+  }
+};
+
+const nums = [3, 2, 3];
+const target = 6;
+console.log(twoSum2(nums, target)); // [0,2]
