@@ -1,5 +1,5 @@
 /* Singly Linked List
-    2021.12.17
+    2021.12.17~
 
    * A Linked List is a collection of nodes. 
     Node에 저장해야 할 것 2가지 
@@ -13,12 +13,6 @@ class Node {
     this.next = null;
   }
 }
-
-// next를 계속해서 연결하는 대신, push 메소드를 쓸 것이다.
-// const first = new Node('Hi');
-// first.next = new Node('there');
-// first.next.next = new Node('How');
-// console.dir(first);
 
 class SinglyLinkedList {
   constructor() {
@@ -39,8 +33,35 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (!this.head) return undefined;
+
+    let current = this.head;
+    let newTail = current; // 처음에는 current, newTail이 같다. 둘다 맨 처음, 시작 부분에 있는 것이다.
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return current; // pop된 요소가 리턴됨.
+  }
 }
 
 const list = new SinglyLinkedList();
-list.push('hello');
-list.push('second!');
+
+console.log(list.push('hello'));
+console.log(list.push('second!'));
+console.log(list.push('third!'));
+console.log(list.push('forth!'));
+console.log(list.pop());
