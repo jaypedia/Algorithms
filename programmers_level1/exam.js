@@ -27,6 +27,8 @@ function solution(answers) {
   return answer;
 }
 
+solution([1, 2, 3, 4, 5]);
+
 // Solution 2
 function solution(answers) {
   let answer = [];
@@ -91,6 +93,7 @@ function solution(answers) {
     if (user[2][i % 10] === answers[i]) point[2]++;
   }
 
+  // const max = Math.max(...point)
   const max = Math.max.apply(null, point);
 
   for (let i = 0; i < 3; i++) {

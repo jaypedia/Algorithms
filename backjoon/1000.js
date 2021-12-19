@@ -4,6 +4,7 @@
 // file system module
 const fs = require('fs');
 const inputData = fs.readFileSync('./backjoon/input.txt').toString().split(' ');
+console.log('@@@', inputData);
 
 const A = parseInt(inputData[0]);
 const B = parseInt(inputData[1]);

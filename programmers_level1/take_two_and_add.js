@@ -13,3 +13,5 @@ function solution(numbers) {
   }
   return answer.sort((a, b) => a - b);
 }
+
+// Other's solution

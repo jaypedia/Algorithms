@@ -13,3 +13,12 @@ function solution(a, b) {
   const date = new Date(`${a}/${b}/2016`);
   return date.toString().slice(0, 3).toUpperCase();
 }
+
+// Other's solution
+// a - 1 ? the index of the array
+function getDayName(a, b) {
+  var date = new Date(2016, a - 1, b);
+  return date.toString().slice(0, 3).toUpperCase();
+}
+
+// Without Date
