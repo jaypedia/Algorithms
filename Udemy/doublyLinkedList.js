@@ -107,6 +107,39 @@ class DoublyLinkedList {
     foundNode.val = val;
     return true;
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+
+    const newNode = new Node(val);
+    const beforeNode = this.get(index - 1);
+    const afterNode = beforeNode.next;
+
+    (beforeNode.next = newNode), (newNode.prev = beforeNode);
+    (newNode.next = afterNode), (afterNode.prev = newNode);
+    this.length++;
+    return this;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const removedNode = this.get(index);
+    const beforeNode = removedNode.prev;
+    const afterNode = removedNode.next;
+
+    beforeNode.next = afterNode;
+    afterNode.prev = beforeNode;
+    removedNode.next = null;
+    removedNode.prev = null;
+
+    this.length--;
+    return removedNode;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -116,12 +149,9 @@ console.log(list.push('second!'));
 console.log(list.push('third!'));
 console.log(list.push('forth!'));
 console.log(list.pop());
-
-/*
 console.log(list.get(2));
 console.log(list.set(1, 'SECOND'));
 console.log(list.insert(3, ':)'));
 console.log(list.remove(2));
 console.log(list.reverse());
 console.log(list.print());
-*/
