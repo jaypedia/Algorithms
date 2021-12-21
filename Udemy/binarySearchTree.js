@@ -87,6 +87,30 @@ class BinarySearchTree {
     }
     return false;
   }
+
+  // Breadth First Search
+  BFS() {
+    const data = [];
+    const queue = [];
+
+    let node = this.root;
+    queue.push(node); // 루트를 큐에 넣는다.
+
+    // 큐에 원소 있으면 루프를 계속 돌린다.
+    while (queue.length) {
+      node = queue.shift(); // dequeue
+      data.push(node.value);
+
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+
+    return data;
+  }
 }
 
 const tree = new BinarySearchTree();
