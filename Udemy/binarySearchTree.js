@@ -49,6 +49,44 @@ class BinarySearchTree {
       }
     }
   }
+
+  find(value) {
+    // 1. root 없으면 바로 탐색 종료
+    if (!this.root) return false;
+
+    let current = this.root;
+    let found = false; // found 변수로 해당 요소를 찾았는지 추적
+
+    // current가 존재하면서 not found일 때 Loop가 돌아간다.
+    // current가 null이 되면 Loop는 멈춘다.
+    while (current && !found) {
+      if (value < current.value) {
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else if (value === current.value) {
+        found = true;
+      }
+    }
+    if (!found) return undefined;
+    return current;
+  }
+
+  contains(value) {
+    if (!this.root) return false;
+    let current = this.root;
+    let found = false;
+    while (current && !found) {
+      if (value < current.value) {
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else if (value === current.value) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 const tree = new BinarySearchTree();
