@@ -19,10 +19,12 @@ class MaxBinaryHeap {
       let parentIdx = Math.floor((idx - 1) / 2);
       let parent = this.values[parentIdx];
 
-      // 만약 삽입한 요소가 부모보다 작거나 같으면 자리바꾸기가 필요 없으니 루프를 빠져나온다.
+      // Bubble up X
+      // 만약 삽입한 요소의 값이 부모보다 작거나 같으면 자리바꾸기가 필요 없으니 루프를 빠져나온다.
       if (element <= parent) break;
 
-      // 삽입한 요소가 부모보다 크면 자리 바꾸기
+      // Bubble up O
+      // 삽입한 요소의 값이 부모보다 크면 자리 바꾸기
       this.values[parentIdx] = element;
       this.values[idx] = parent;
 
@@ -32,6 +34,7 @@ class MaxBinaryHeap {
     }
   }
 
+  // 최대값 추출하기
   extractMax() {
     // 가장 앞에 있는 요소인 최대값을 제거하고, 가장 뒤에 있는 요소로 대체하기
 
@@ -40,7 +43,7 @@ class MaxBinaryHeap {
     // 맨 뒤의 요소 pop으로 제거하면서 end에 할당
     const end = this.values.pop();
 
-    // value에 요소가 1개 이상일 때 - 배열에 요소가 없는 경우엔 아래 로직을 실행 X
+    // value에 요소가 1개 이상일 때 - pop 이후 배열에 요소가 없는 경우엔 아래 로직을 실행 X
     if (this.values.length > 0) {
       // 루트를 end로 만들기
       this.values[0] = end;
@@ -53,7 +56,7 @@ class MaxBinaryHeap {
   sinkDown() {
     // 인덱스 맨 앞에서 시작
     let idx = 0;
-    // 루트 제거 & 맨 뒤에 있는 요소로 대체한 후, 배열의 맨 앞에 있는 요소(즉 원래 맨 뒤에 있었던 요소)
+    // element는 루트를 end로 만든 후의 루트(즉 원래 맨 뒤에 있었던 요소) - sink or not
     const element = this.values[0];
     const length = this.values.length;
 
@@ -86,7 +89,8 @@ class MaxBinaryHeap {
         }
       }
 
-      // swap이 없는 경우(element가 왼쪽, 오른쪽 자식보다 큰 경우), 루프 탈출
+      // element가 왼쪽, 오른쪽 자식보다 큰 경우 or 계산한 left/rightChildIdx가 범위 벗어난 경우),
+      // sink 할 필요가 없으니 루프 탈출
       if (swap === null) break;
 
       // swap이 null이 아닌 경우, 자리 바꾸기
@@ -99,4 +103,13 @@ class MaxBinaryHeap {
 }
 
 const heap = new MaxBinaryHeap();
-heap.insert(100);
+heap.insert(26);
+heap.insert(1);
+heap.insert(50);
+heap.insert(43);
+heap.insert(74);
+heap.insert(81);
+console.log(heap);
+
+heap.extractMax();
+console.log(heap);
