@@ -20,18 +20,18 @@ const colors = [
   'grey',
   'white',
 ];
-let count = 0;
 const colorArr = [];
 
 rl.on('line', line => {
-  count++;
   colorArr.push(line);
-  if (count === 3) rl.close();
+  if (colorArr.length === 3) rl.close();
 }).on('close', () => {
-  console.log(+calculateResistorValues(colorArr));
+  console.log(calculateResistorValues(colorArr));
   process.exit();
 });
 
 const calculateResistorValues = arr =>
-  colors.indexOf(arr[0]).toString() +
-  colors.indexOf(arr[1]).toString() * 10 ** colors.indexOf(arr[2]);
+  +(
+    (colors.indexOf(arr[0]) * 10 + colors.indexOf(arr[1])) *
+    10 ** colors.indexOf(arr[2])
+  );
