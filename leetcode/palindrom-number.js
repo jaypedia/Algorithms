@@ -14,3 +14,8 @@ For example, 121 is palindrome while 123 is not.
 var isPalindrome = function (x) {
   return x === +x.toString().split('').reverse().join('') ? true : false;
 };
+
+// 2022.1.12 다시풀기 - 소요시간 5분
+const isPalindrome = int => {
+  return int === +int.toString().split('').reverse().join('');
+};
