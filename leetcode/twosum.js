@@ -70,3 +70,34 @@ var twoSum2 = function (nums, target) {
 const nums = [3, 2, 3];
 const target = 6;
 console.log(twoSum2(nums, target)); // [0,2]
+
+// ✅ 2022.1.12 다시 풀어보기
+// 소요시간 10분
+// PseudoCode
+// 이중 for문 돌리기(인덱스로) => 두 수의 합 => target과 비교 => 인덱스 리턴
+
+const twoSum = (nums, target) => {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+};
+
+// 방정식 풀이
+// a + b = target
+// a = target - b
+// 배열 안의 모든 요소들을 순회하면서 a = target - b 수행
+// a가 있다면 답이 존재한다는 것
+// map에는 {i번째 요소(a) : 인덱스} 식으로 저장됨
+
+const twoSumEquation = (arr, target) => {
+  const map = {};
+  for (let i = 0; i < arr.length; i++) {
+    const a = target - arr[i];
+    if (a in map) return [map[a], i];
+    map[arr[i]] = i;
+  }
+};
