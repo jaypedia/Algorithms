@@ -56,3 +56,25 @@ var reverse2 = function (x) {
 
 console.log(reverse2(-123));
 console.log(reverse2(12230020000000));
+
+// 2022.1.12 다시풀기
+// 소요시간 : 30분
+
+// pseudo code
+// 1. 양수일 경우 그냥 뒤집음
+// 2. 음수일 경우 맨 앞에 - 부호 붙여 줌
+// 3. 뒤집었을 때 앞에 0이 있는 경우 제거 필요
+// 4. 뒤집은 결과가 범위가 2**31 이상일 경우 return 0
+
+const reverse = int => {
+  if (int === 0) return 0;
+  let reversed = 0;
+  if (int > 0) {
+    reversed = parseInt(int.toString().split('').reverse().join(''), 10);
+  } else {
+    reversed = int.toString().split('').reverse();
+    reversed.pop();
+    reversed = reversed.join('') * -1;
+  }
+  return reversed > 2 ** 31 - 1 || reversed < -(2 ** 31) ? 0 : reversed;
+};
