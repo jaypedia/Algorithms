@@ -19,3 +19,8 @@ var isPalindrome = function (x) {
 const isPalindrome = int => {
   return int === +int.toString().split('').reverse().join('');
 };
+
+// 2022.1.13 - spread operator
+const isPalindrome = x => {
+  return x + '' === [...(x + '')].reverse().join('');
+};
