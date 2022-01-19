@@ -102,3 +102,69 @@ function solution(answers) {
 
   return answer;
 }
+
+// 2022.1.19 다시풀기
+// 소요시간 40분
+
+// 1번 수포자 1, 2, 3, 4, 5,
+// 2번 수포자 2, 1, 2, 3, 2, 4, 2, 5,
+// 3번 수포자 3, 3, 1, 1, 2, 2, 4, 4, 5, 5
+
+function solution5(answers) {
+  const answer = [];
+
+  // 1, 2, 3번의 반복되는 답안을 우선 객체나 배열로 저장해두기?
+  // 반복된다는 것을 어떻게 구현할 것인가?
+  // answer의 길이가 더 길 경우 -> 다시 수포자 1번의 0번째 인덱스로 돌아가서 반복할 수 있도록
+
+  const P = {
+    A1: [1, 2, 3, 4, 5],
+    A2: [2, 1, 2, 3, 2, 4, 2, 5],
+    A3: [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
+  };
+
+  // 각 사람이 맞은 것만 필터링할 수 있도록 filter 메서드를 활용 - 답 자체가 필요한 것이 아닌, 맞은 개수가 필요하므로 length property 활용
+  const a1 = answers.filter((v, i) => v === P.A1[i % P.A1.length]).length;
+  const a2 = answers.filter((v, i) => v === P.A2[i % P.A2.length]).length;
+  const a3 = answers.filter((v, i) => v === P.A3[i % P.A3.length]).length;
+
+  const max = Math.max(a1, a2, a3);
+
+  if (max === a1) answer.push(1);
+  if (max === a2) answer.push(2);
+  if (max === a3) answer.push(3);
+
+  return answer;
+}
+
+// 이차원 배열 활용
+function solution6(answers) {
+  const answer = [];
+  const P = [
+    [1, 2, 3, 4, 5],
+    [2, 1, 2, 3, 2, 4, 2, 5],
+    [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
+  ];
+
+  // answers 배열 순환하면서 P에 있는 각각의 사람들의 답과 일치하는지 확인
+
+  const count = [0, 0, 0];
+  answers.forEach((v, i) => {
+    P.forEach((p, j) => {
+      if (v === p[i % p.length]) count[j]++;
+    });
+  });
+
+  console.log(count);
+  // 가장 많이 맞춘 사람 넣기 => max 구한 후 max와 같은 사람을 순서대로 answer에 pust
+
+  const max = Math.max(...count);
+
+  count.forEach((v, i) => {
+    if (v === max) answer.push(i + 1);
+  });
+
+  return answer;
+}
+
+console.log(solution6([1, 3, 2, 4, 2]));
