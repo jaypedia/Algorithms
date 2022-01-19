@@ -13,3 +13,24 @@ function solution(array, commands) {
   }
   return answer;
 }
+
+// 2022.1.19 다시풀기
+// 소요시간 : 10분
+function solution2(array, commands) {
+  const answer = [];
+  commands.forEach(v =>
+    answer.push(array.slice(v[0] - 1, v[1]).sort((a, b) => a - b)[v[2] - 1])
+  );
+  return answer;
+}
+
+console.log(
+  solution2(
+    [1, 5, 2, 6, 3, 7, 4],
+    [
+      [2, 5, 3],
+      [4, 4, 1],
+      [1, 7, 3],
+    ]
+  )
+);
