@@ -63,3 +63,17 @@ function main() {
 
   ws.end();
 }
+
+// 2022.1.26 Review
+// Another solution
+function kangaroo(x1, v1, x2, v2) {
+  if (v1 <= v2) return 'NO';
+  let x_1 = x1;
+  let x_2 = x2;
+  while (true) {
+    x_1 += v1;
+    x_2 += v2;
+    if (x_1 === x_2) return 'YES';
+    if (x_1 > x_2) return 'NO';
+  }
+}
