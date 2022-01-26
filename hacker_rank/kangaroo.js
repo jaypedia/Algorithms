@@ -77,3 +77,11 @@ function kangaroo(x1, v1, x2, v2) {
     if (x_1 > x_2) return 'NO';
   }
 }
+
+// Algebraic solution (Without loop!)
+function kangaroo(x1, v1, x2, v2) {
+  if (v1 <= v2) return 'NO';
+  const n = (x2 - x1) / (v1 - v2);
+  if (Number.isInteger(n) && n > 0) return 'YES';
+  else return 'NO';
+}
