@@ -1,3 +1,5 @@
+// 2022.2.2 Review
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -52,7 +54,7 @@ class BinarySearchTree {
 
   find(value) {
     // 1. root 없으면 바로 탐색 종료
-    if (!this.root) return false;
+    if (!this.root) return null;
 
     let current = this.root;
     let found = false; // found 변수로 해당 요소를 찾았는지 추적
@@ -64,14 +66,38 @@ class BinarySearchTree {
         current = current.left;
       } else if (value > current.value) {
         current = current.right;
+        // 그냥 else로 써도 되긴 함
       } else if (value === current.value) {
         found = true;
       }
     }
-    if (!found) return undefined;
-    return current;
+    if (!found) return null;
+    return current; // node 출력
   }
 
+  /* find - 내가 구현한 방법
+  find(value) {
+    if (this.root === null) return null;
+
+    let current = this.root;
+
+    while (true) {
+      if (current.value === value) return true;
+
+      if (value < current.value) {
+        if (current.left === null) return false;
+        current = current.left;
+      }
+
+      if (value > current.value) {
+        if (current.right === null) return false;
+        current = current.right;
+      }
+    }
+  }
+  */
+
+  // true or false
   contains(value) {
     if (!this.root) return false;
     let current = this.root;
@@ -88,6 +114,7 @@ class BinarySearchTree {
     return false;
   }
 
+  // Tree Traversal : Visit Every Node Once
   // Breadth First Search
   BFS() {
     const data = [];
@@ -112,6 +139,7 @@ class BinarySearchTree {
     return data;
   }
 
+  // Depth First Search
   DFSPreOrder() {
     const data = [];
 
@@ -162,4 +190,3 @@ class BinarySearchTree {
 }
 
 const tree = new BinarySearchTree();
-tree.root = new Node(10);
