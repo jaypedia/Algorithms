@@ -26,6 +26,7 @@ class HashTable {
     }
     this.keyMap[index].push([key, value]);
   }
+
   // GET
   // 1. Accepts a key
   // 2. Hashes the key
@@ -89,3 +90,16 @@ console.log(ht);
 
 console.log(ht.values());
 console.log(ht.keys());
+
+// Big O of Hash Tables (average case)
+// Insert, Deletion, Access : O(1)
+// With the worst hash function : O(n)
+
+// Good Hash function?
+// 1. fast
+// 2. distribute keys uniformly
+// 3. deterministic (exact same output for same input)
+
+// Deal with two keys that hash to the same index
+// 1. Separate chaining
+// 2. Linear probing
