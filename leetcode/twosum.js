@@ -39,7 +39,7 @@ const twoSum = (nums, target) => {
 
 const nums = [3, 2, 3];
 const target = 6;
-console.log(twoSum(nums, target)); // [0,2]
+// console.log(twoSum(nums, target)); // [0,2]
 
 // ✅ My solution (11/27)
 // 이중 for문으로 모든 경우의 수 찾기
@@ -67,16 +67,17 @@ var twoSum2 = function (nums, target) {
   }
 };
 
-const nums = [3, 2, 3];
-const target = 6;
-console.log(twoSum2(nums, target)); // [0,2]
+// const nums = [3, 2, 3];
+// const target = 6;
+// console.log(twoSum2(nums, target)); // [0,2]
 
 // ✅ 2022.1.12 다시 풀어보기
 // 소요시간 10분
 // PseudoCode
 // 이중 for문 돌리기(인덱스로) => 두 수의 합 => target과 비교 => 인덱스 리턴
 
-const twoSum = (nums, target) => {
+// 시간 복잡도 : O(n^2) 완전 탐색 (Brute-Force / Exhaustive search)
+const twoSum3 = (nums, target) => {
   for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       if (nums[i] + nums[j] === target) {
@@ -101,3 +102,47 @@ const twoSumEquation = (arr, target) => {
     map[arr[i]] = i;
   }
 };
+
+// O(n) : Hash
+// 객체를 활용한 풀이
+const twoSumHash = (nums, target) => {
+  const numDict = nums.reduce((obj, num, index) => {
+    if (obj[num]) obj[num].push(index);
+    else obj[num] = [index];
+    return obj;
+  }, {}); // Brilient way to use reduce
+
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    if (num === target - num) {
+      if (numDict[num].length === 1) continue;
+      else return [numDict[num][0], numDict[num][1]];
+    }
+
+    if (numDict[target - num]) {
+      return [...numDict[num], ...numDict[target - num]];
+    }
+  }
+};
+
+console.log(twoSumHash([1, 2, 3, 4, 5], 8));
+
+// 2022.2.10
+// Map
+// Navigator : Hoi
+const twoSumMap = (arr, target) => {
+  const map = new Map();
+  const len = arr.length;
+  const answer = [];
+  for (i = 0; i < len; i++) {
+    let key = target - arr[i];
+    if (map.has(key)) {
+      answer.push(map.get(key));
+      answer.push(i);
+      return answer;
+    }
+    map.set(arr[i], i);
+  }
+};
+
+console.log('MAP', twoSumMap([1, 2, 3, 4, 5], 8));
