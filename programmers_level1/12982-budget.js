@@ -17,3 +17,15 @@ function solution(d, budget) {
 }
 
 // Use Higher-order function
+
+function solution(d, budget) {
+  d.sort((a, b) => a - b);
+
+  while (d.reduce((a, b) => a + b, 0) > budget) d.pop();
+
+  return d.length;
+}
+
+const solution = (d, b) =>
+  d.sort((a, b) => a - b).filter(x => (b - x >= 0 ? ((b = b - x), 1) : 0))
+    .length;
