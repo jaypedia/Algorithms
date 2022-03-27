@@ -23,3 +23,17 @@ var missingNumber = function (nums) {
   }
   return sum;
 };
+
+// My another solution
+var missingNumber = function (nums) {
+  const sum = nums.reduce((acc, cur, idx) => acc + cur - idx, 0);
+  return nums.length - sum;
+};
+
+// 1부터 N까지 자연수의 합 공식 이용 : (N * (N+1)) / 2
+var missingNumber = function (nums) {
+  const sum = nums.reduce((acc, cur) => acc + cur, 0);
+  const len = nums.length;
+  const originalSum = (len * (len + 1)) / 2;
+  return originalSum - sum;
+};
