@@ -37,3 +37,40 @@ function solution(number, k) {
 
   return stack.slice(0, number.length - k).join('');
 }
+
+// Retry (4/11) : use for...of
+function solution(number, k) {
+  const stack = [];
+
+  for (const n of number) {
+    while (stack[stack.length - 1] < n && k > 0) {
+      stack.pop();
+      k--;
+    }
+    stack.push(n);
+  }
+
+  stack.splice(stack.length - k, k);
+  return stack.join('');
+}
+
+function solution2(number, k) {
+  let answer = '';
+  let len = number.length - k;
+  let start = 0;
+
+  while (start < number.length && answer.length !== len) {
+    let leftNum = k + answer.length + 1;
+    let max = 0;
+    for (let j = start; j < leftNum; j++) {
+      if (max < number[j]) {
+        max = number[j];
+        start = j + 1;
+      }
+    }
+    answer += max;
+  }
+  return answer;
+}
+
+console.log(solution2('1231234', 3));
