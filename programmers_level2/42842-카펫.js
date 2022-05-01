@@ -5,14 +5,29 @@
 function solution(brown, yellow) {
   const total = brown + yellow;
 
-  for (let i = 3; i <= total; i++) {
-    const num = total / i;
-    if (!Number.isInteger(num)) continue;
+  for (let height = 3; height <= total; height++) {
+    const width = total / height;
+    if (!Number.isInteger(width)) continue;
 
-    const yellowCount = total - (num * 2 + (i - 2) * 2);
-
+    const yellowCount = total - (width * 2 + (height - 2) * 2);
     if (yellowCount === yellow) {
-      return [total / i, i];
+      return [width, height];
+    }
+  }
+}
+
+// Another way
+function solution(brown, yellow) {
+  const total = brown + yellow;
+
+  for (let i = Math.floor(total / 2); i > 0; i--) {
+    if (total % i !== 0) continue;
+
+    const width = i;
+    const height = total / i;
+
+    if ((width - 2) * (height - 2) === yellow) {
+      return [width, height];
     }
   }
 }
