@@ -21,6 +21,50 @@ function solution(priorities, location) {
   return printed.indexOf(location + 1) + 1;
 }
 
+// 다시 풀기 (5/4)
+function solution(priorities, location) {
+  const docs = priorities.reduce((arr, p, i) => {
+    arr.push({ name: i, priority: p });
+    return arr;
+  }, []);
+
+  const printArr = [];
+  let order = 1;
+
+  while (docs.length) {
+    const cur = docs.shift();
+    const curPriority = priorities.shift();
+
+    if (curPriority < Math.max(...priorities)) {
+      docs.push(cur);
+      priorities.push(curPriority);
+    } else {
+      printArr.push({ ...cur, order: order++ });
+    }
+  }
+
+  return printArr.find(v => v.name === location).order;
+}
+
+// Other's solution
+function solution(priorities, location) {
+  let answer = 0;
+  while (true) {
+    if (location === -1) location = priorities.length - 1;
+
+    if (priorities[0] === Math.max(...priorities)) {
+      answer++;
+
+      if (location-- === 0) return answer;
+      priorities.shift();
+      continue;
+    }
+
+    location--;
+    priorities.push(priorities.shift());
+  }
+}
+
 console.log(solution([2, 1, 3, 2], 2));
 console.log(solution([1, 1, 9, 1, 1, 1], 0));
 console.log(solution([2, 4, 8, 2, 9, 3, 3], 2)); // 2
