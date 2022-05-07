@@ -65,6 +65,26 @@ function solution(priorities, location) {
   }
 }
 
+// Other's solution 2
+function solution(priorities, location) {
+  const list = priorities.map((priority, i) => ({
+    priority,
+    isMyDoc: i === location,
+  }));
+
+  let order = 0;
+  while (true) {
+    const cur = list.shift();
+
+    if (list.some(t => t.priority > cur.priority)) {
+      list.push(cur);
+    } else {
+      order++;
+      if (cur.isMyDoc) return order;
+    }
+  }
+}
+
 console.log(solution([2, 1, 3, 2], 2));
 console.log(solution([1, 1, 9, 1, 1, 1], 0));
 console.log(solution([2, 4, 8, 2, 9, 3, 3], 2)); // 2
