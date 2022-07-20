@@ -30,6 +30,39 @@ var firstUniqChar = function (s) {
   return Math.min(...Object.values(obj));
 };
 
-console.log(firstUniqChar('loveleetcode'));
-console.log(firstUniqChar('aabb'));
-console.log(firstUniqChar('aadadaad'));
+// July 20, 2022
+var firstUniqChar = s => {
+  const map = new Map();
+
+  for (const c of s) {
+    if (map.has(c)) {
+      map.set(c, map.get(c) + 1);
+    } else {
+      map.set(c, 1);
+    }
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    if (map.get(s[i]) === 1) {
+      return i;
+    }
+  }
+
+  return -1;
+};
+
+var firstUniqChar = s => {
+  const map = [...s].reduce((acc, cur) => {
+    if (acc.has(cur)) acc.set(cur, acc.get(cur) + 1);
+    else acc.set(cur, 1);
+    return acc;
+  }, new Map());
+
+  for (let i = 0; i < s.length; i++) {
+    if (map.get(s[i]) === 1) {
+      return i;
+    }
+  }
+
+  return -1;
+};
