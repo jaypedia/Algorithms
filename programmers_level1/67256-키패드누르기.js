@@ -1,6 +1,7 @@
 // March 6, 2022
 // https://programmers.co.kr/learn/courses/30/lessons/67256
 
+// My attempt
 function solution(numbers, hand) {
   let answer = '';
   let leftThumb = -1;
@@ -67,4 +68,50 @@ function checkDistance(thumb, num) {
   return distanceTable[row][col];
 }
 
-console.log(solution([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], 'right'));
+// July 24, 2022
+function solution(numbers, hand) {
+  const coords = [
+    [1, 0],
+    [0, 3],
+    [1, 3],
+    [2, 3],
+    [0, 2],
+    [1, 2],
+    [2, 2],
+    [0, 1],
+    [1, 1],
+    [2, 1],
+    [0, 0],
+    [1, 0],
+    [2, 0],
+  ];
+
+  let left = 10;
+  let right = 12;
+
+  const setLeft = number => {
+    left = number;
+    return 'L';
+  };
+
+  const setRight = number => {
+    right = number;
+    return 'R';
+  };
+
+  return numbers.reduce((result, number) => {
+    if ([1, 4, 7].includes(number)) return result + setLeft(number);
+    if ([3, 6, 9].includes(number)) return result + setRight(number);
+    const diffLeft = distance(coords[number], coords[left]);
+    const diffRight = distance(coords[number], coords[right]);
+    if (diffLeft < diffRight) return result + setLeft(number);
+    if (diffRight < diffLeft) return result + setRight(number);
+    if (hand === 'left') return result + setLeft(number);
+    return result + setRight(number);
+  }, '');
+}
+
+// 맨해튼 거리 |x1 - x2| + |y1 - y2|
+function distance([x1, y1], [x2, y2]) {
+  return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+}
