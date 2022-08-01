@@ -37,3 +37,12 @@ var missingNumber = function (nums) {
   const originalSum = (len * (len + 1)) / 2;
   return originalSum - sum;
 };
+
+// Aug 1, 2022
+var missingNumber = function (nums) {
+  let sum = 0;
+  for (let i = 1; i <= nums.length; i++) {
+    sum += i;
+  }
+  return sum - nums.reduce((acc, cur) => (acc += cur), 0);
+};
