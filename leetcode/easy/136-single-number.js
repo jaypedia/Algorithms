@@ -26,6 +26,26 @@ var singleNumber = function (nums) {
   return nums[0];
 };
 
-console.log(singleNumber([4, 1, 2, 1, 2]));
-console.log(singleNumber([2, 2, 1]));
-console.log(singleNumber([1, 3, 1, -1, 3]));
+// Aug 2, 2022
+var singleNumber = function (nums) {
+  const map = new Map();
+  nums.forEach(v => {
+    if (map.has(v)) map.delete(v);
+    else map.set(v);
+  });
+
+  return map.keys().next().value;
+};
+
+// https://leetcode.com/problems/single-number/discuss/396584/Clean-JavaScript-solution
+function singleNumber(nums) {
+  const map = {};
+  for (let n of nums) {
+    if (map[n] == null) map[n] = 0;
+    map[n]++;
+  }
+
+  for (let n in map) {
+    if (map[n] === 1) return Number(n);
+  }
+}
