@@ -31,4 +31,23 @@ const getBinary = arr => {
   return array;
 };
 
-console.log(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]));
+// Aug 3, 2022
+// My another solution
+function solution(n, arr1, arr2) {
+  const answer = [];
+  for (let i = 0; i < n; i++) {
+    let map = '';
+    const cur1 = arr1[i].toString(2).padStart(n, 0);
+    const cur2 = arr2[i].toString(2).padStart(n, 0);
+
+    for (let j = 0; j < n; j++) {
+      if (cur1[j] === '1' || cur2[j] === '1') {
+        map += '#';
+      } else {
+        map += ' ';
+      }
+    }
+    answer.push(map);
+  }
+  return answer;
+}
