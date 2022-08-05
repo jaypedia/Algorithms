@@ -32,3 +32,23 @@ function solution(s) {
 
   return !stack.length;
 }
+
+// Aug 5, 2022
+// Level 2
+function solution(n, k) {
+  function isPrimeNumber(n) {
+    if (n <= 1) return false;
+    for (let i = 2; i < n; i++) {
+      if (!(n % i)) return false;
+    }
+    return true;
+  }
+
+  const split = n.toString(k).split('0');
+  let answer = 0;
+  for (const v of split) {
+    const cur = Number(v);
+    if (isPrimeNumber(cur)) answer++;
+  }
+  return answer;
+}
