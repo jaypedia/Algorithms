@@ -45,6 +45,28 @@ const parseBonus = letter => {
   }
 };
 
+// Aug 6, 2022
+function solution(dartResult) {
+  const dartScore = { '#': 2, '*': -1, S: 1, D: 2, T: 3 };
+  let i = 0;
+  let option = null;
+  let result = 0;
+  while (i < dartResult.length) {
+    let num = Number(dartResult[i]);
+    if (!isNaN(Number(dartResult[i + 1]))) {
+      num = 10;
+      i++;
+    }
+    const bonus = dartResult[i + 1];
+    option = dartResult[i + 2] === '#' || dartResult[i + 2] === '*' ? dartResult[i + 2] : null;
+    console.log(num, dartScore[bonus], option);
+    result += num ** dartScore[bonus] * (dartScore[option] || 1);
+    if (option) i += 3;
+    else i += 2;
+  }
+  return result;
+}
+
 console.log(solution('1S2D*3T'));
 console.log(solution('1D2S3T*'));
 console.log(solution('1D2S0T'));
