@@ -1,47 +1,31 @@
 // 2021-11-26~27
-
-/*
-Write a function to find the longest common prefix string amongst an array of strings.
-
-If there is no common prefix, return an empty string "".
-*/
+// https://leetcode.com/problems/longest-common-prefix/s
 
 /**
  * @param {string[]} strs
  * @return {string}
  */
-
 var longestCommonPrefix = function (strs) {
   const standard = strs[0];
   if (strs.length === 1) return standard;
-
   const arr = [];
   let prefix = '';
 
   for (let j = 1; j < strs.length; j++) {
     for (let i = 0; i < standard.length; i++) {
       if (standard[i] === strs[j][i]) prefix += standard[i];
-
       if (standard[i] !== strs[j][i]) break;
     }
-
     arr.push(prefix);
     prefix = '';
   }
-
   arr.sort();
-
   return arr[0];
 };
 
-// const strs = ['flower', 'flow', 'flight'];
-const strs = ['cir', 'car'];
-// console.log(longestCommonPrefix(strs)); // 'c'
-
-// 2022.1.22 다시풀기
+// Jan 22, 2022
 // 소요시간 : 45분
 
-// 2중 for
 // 외부 for : 배열의 요소 순환
 // 내부 for : 요소의 string 순환
 // 0번째 인덱스부터 비교하여 일치하지 않는 문자일 시 해당 인덱스만큼 slice
@@ -63,6 +47,20 @@ const lcp = strs => {
   return answer;
 };
 
-console.log(lcp(['', 'f']));
+// Aug 15, 2022
+var longestCommonPrefix = function (strs) {
+  let prefix = '';
+  for (let i = 0; i < strs[0].length; i++) {
+    const currentLetter = strs[0][i];
+    if (!checkPrefix(strs, i, currentLetter)) return prefix;
+    else prefix += currentLetter;
+  }
+  return prefix;
+};
 
-// Tried Debugging
+const checkPrefix = (arr, index, letter) => {
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i][index] !== letter) return false;
+  }
+  return true;
+};
