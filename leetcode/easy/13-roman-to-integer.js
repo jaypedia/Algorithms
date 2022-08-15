@@ -1,11 +1,11 @@
 // 2021-11-27
+// https://leetcode.com/problems/roman-to-integer/
 
 /**
  * @param {string} s
  * @return {number}
  */
-
-const romanToInt = function (s) {
+var romanToInt = function (s) {
   const romanToInt = {
     I: 1,
     V: 5,
@@ -31,9 +31,6 @@ const romanToInt = function (s) {
     return acc;
   }, 0);
 };
-
-console.log(romanToInt('MCMXCIV')); // 1994
-console.log(romanToInt('III')); // 3
 
 // RegExp
 var romanToInt = function (s) {
@@ -73,3 +70,75 @@ var romanToInt = function (s) {
   }
   return total;
 };
+
+// Aug 15, 2022
+var romanToInt = function (s) {
+  const roman = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  const map = { I: ['V', 'X'], X: ['L', 'C'], C: ['D', 'M'] };
+  let answer = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    const cur = s[i];
+    const next = s[i + 1];
+    if (next && map[cur] && map[cur].includes(next)) {
+      answer += roman[next] - roman[cur];
+      i++;
+    } else {
+      answer += roman[cur];
+    }
+  }
+  return answer;
+};
+
+// Aug 15, 2022
+// reduceRight
+var romanToInt = function (s) {
+  const roman = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  const lastNum = roman[s[s.length - 1]];
+  return s.split('').reduceRight((acc, cur, i, arr) => {
+    const prevNum = roman[arr[i - 1]] || 0;
+    const curNum = roman[cur];
+    curNum > prevNum ? (acc -= prevNum) : (acc += prevNum);
+    return acc;
+  }, lastNum);
+};
+
+// reduce
+var romanToInt = function (s) {
+  const roman = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  return s.split('').reduce((acc, cur, i, arr) => {
+    const curNum = roman[cur];
+    const nextNum = roman[arr[i + 1]] || 0;
+    curNum < nextNum ? (acc -= curNum) : (acc += curNum);
+    return acc;
+  }, 0);
+};
+
+console.log(romanToInt('III'));
+console.log(romanToInt('MCMXCIV'));
