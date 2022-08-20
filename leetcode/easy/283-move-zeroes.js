@@ -33,7 +33,6 @@ const moveZeroes2 = nums => {
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] !== 0) {
       nums[current++] = nums[i];
-      console.log(current, i, nums);
     }
   }
 
@@ -52,3 +51,16 @@ var moveZeroes3 = function (nums) {
     idx++;
   }
 };
+
+var moveZeroes4 = function (nums) {
+  let j = 0; // nonzero count, 0의 위치(0의 인덱스)
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      // swap elements
+      [nums[j], nums[i]] = [nums[i], nums[j]];
+      j++;
+    }
+  }
+};
+
+moveZeroes4([0, 1, 0, 3, 12]);
