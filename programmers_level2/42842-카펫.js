@@ -31,3 +31,17 @@ function solution(brown, yellow) {
     }
   }
 }
+
+// Sep 4, 2022 - 20 min
+function solution(brown, yellow) {
+  const sum = brown + yellow;
+  for (let h = 3; h <= sum / h; h++) {
+    const w = sum / h;
+    if (Number.isInteger(w)) {
+      const outline = 2 * (h + w) - 4;
+      if (outline === brown) {
+        return [w, h];
+      }
+    }
+  }
+}
