@@ -9,6 +9,14 @@ var lengthOfLastWord = function (s) {
     if (s[i] !== ' ') count++;
     else break;
   }
-
   return count;
+};
+
+// Sep 7, 2022
+var lengthOfLastWord = function (s) {
+  const arr = s.split(' ');
+  for (let i = arr.length - 1; i >= 0; i--) {
+    const len = arr[i].length;
+    if (len) return len;
+  }
 };
