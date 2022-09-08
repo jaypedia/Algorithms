@@ -5,14 +5,10 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-
 // My solution
 var containsDuplicate = function (nums) {
   return new Set(nums).size !== nums.length;
 };
-
-console.log(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]));
-console.log(containsDuplicate([1, 2, 3, 4]));
 
 // Other's solutions
 // https://leetcode.com/problems/contains-duplicate/discuss/515531/Javascript-set-vs.-object
@@ -26,7 +22,6 @@ function objectSolution(nums) {
       testObj[aNum] = true;
     }
   }
-
   return false;
 }
 
@@ -45,6 +40,16 @@ var containsDuplicate = function (nums) {
   for (var i = 0; i < nums.length; i++) {
     obj[nums[i]] = obj[nums[i]] + 1 || 1;
     if (obj[nums[i]] > 1) return true;
+  }
+  return false;
+};
+
+// Sep 4, 2022
+var containsDuplicate = function (nums) {
+  const set = new Set();
+  for (let i = 0; i < nums.length; i++) {
+    if (set.has(nums[i])) return true;
+    set.add(nums[i]);
   }
   return false;
 };
