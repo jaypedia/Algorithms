@@ -37,3 +37,22 @@ var rangeSumBST = (root, low, high) => {
   else if (root.val > high) return rangeSumBST(root.left, low, high);
   else return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
 };
+
+// Sep 28, 2022
+// Queue
+var rangeSumBST = function (root, low, high) {
+  let answer = 0;
+  let node = root;
+  const queue = [];
+  queue.push(node);
+
+  while (queue.length) {
+    node = queue.shift();
+    if (node.val >= low && node.val <= high) {
+      answer += node.val;
+    }
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+  return answer;
+};
