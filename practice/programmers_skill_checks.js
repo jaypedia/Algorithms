@@ -52,3 +52,48 @@ function solution(n, k) {
   }
   return answer;
 }
+
+// Oct 13, 2022
+// Level 2
+function solution(n) {
+  let answer = 1;
+  const max = Math.ceil(n / 2);
+
+  for (let i = 1; i < max; i++) {
+    let num = 0;
+    for (let j = i; j <= max; j++) {
+      num += j;
+      if (num === n) answer++;
+      if (num > n) break;
+    }
+  }
+  return answer;
+}
+
+function solution(s) {
+  const isValid = function (s) {
+    const map = new Map([
+      [')', '('],
+      [']', '['],
+      ['}', '{'],
+    ]);
+    const stack = [];
+    for (const v of s) {
+      if (!map.has(v)) {
+        stack.push(v);
+        continue;
+      }
+      if (map.get(v) !== stack[stack.length - 1]) return false;
+      stack.pop();
+    }
+    return stack.length === 0;
+  };
+
+  let answer = 0;
+  if (isValid(s)) answer++;
+  for (let i = 1; i < s.length; i++) {
+    const newS = s.slice(i) + s.slice(0, i);
+    if (isValid(newS)) answer++;
+  }
+  return answer;
+}
