@@ -27,24 +27,17 @@ function solution(n, words) {
   return [person, turn];
 }
 
-console.log(solution(3, ['tank', 'kick', 'know', 'wheel', 'land', 'dream', 'mother', 'robot', 'tank'])); // [3,3]
-console.log(solution(3, ['tank', 'kick', 'know', 'Lheel', 'land', 'dream', 'mother', 'robot', 'tank'])); // [1,2]
-console.log(
-  solution(5, [
-    'hello',
-    'observe',
-    'effect',
-    'take',
-    'either',
-    'recognize',
-    'encourage',
-    'ensure',
-    'establish',
-    'hang',
-    'gather',
-    'refer',
-    'reference',
-    'estimate',
-    'executive',
-  ])
-); // [0,0]
+// Nov 3, 2022
+function solution(n, words) {
+  const set = new Set([words[0]]);
+
+  for (let i = 1; i < words.length; i++) {
+    if (set.has(words[i]) || words[i - 1][words[i - 1].length - 1] !== words[i][0]) {
+      const turn = Math.floor(i / n);
+      const person = i - turn * n;
+      return [person + 1, turn + 1];
+    }
+    set.add(words[i]);
+  }
+  return [0, 0];
+}
