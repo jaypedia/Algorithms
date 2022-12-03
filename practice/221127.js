@@ -40,3 +40,25 @@ function solution(_element, _styles) {
   const result = getStylesOf(element, styles);
   return JSON.stringify(result, Object.keys(result).sort());
 }
+
+// #6
+function solution(tags) {
+  if (!tags) return false;
+  const stack = [];
+  const tagsArr = tags.slice(1, -1).split('><');
+
+  for (const tag of tagsArr) {
+    if (tag[tag.length - 1] === '/') continue;
+
+    if (tag[0] === '/') {
+      const top = stack[stack.length - 1];
+      if (top === tag.slice(1)) {
+        stack.pop();
+      }
+    } else {
+      stack.push(tag);
+    }
+  }
+
+  return stack.length === 0;
+}
