@@ -25,5 +25,17 @@ function BS(arr, val) {
   return -1;
 }
 
+// Test Case
 console.log(BS([1, 2, 3, 4, 5, 6, 7, 8], 5)); // 4
 console.log(BS([1, 2, 3, 4, 5, 6, 7, 8], -100)); // -1
+
+// Another way
+function binarySearch(array, target, startIndex, endIndex) {
+  if (startIndex > endIndex) return false;
+
+  const mid = Math.floor((startIndex + endIndex) / 2);
+
+  if (array[mid] === target) return mid;
+  if (array[mid] > target) return binarySearch(array, target, startIndex, mid - 1);
+  if (array[mid] < target) return binarySearch(array, target, mid + 1, endIndex);
+}
