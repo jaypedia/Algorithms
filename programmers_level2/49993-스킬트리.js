@@ -21,13 +21,6 @@ function solution(skill, skill_trees) {
   return answer;
 }
 
-console.log(solution('ASC', ['A', 'Q'])); // 1
-console.log(solution('CBD', ['BACDE', 'CBADF', 'AECB', 'BDA'])); // 2
-console.log(solution('CBD', ['C', 'D', 'CB', 'BDA'])); // 2
-console.log(solution('CBD', ['CAD'])); // 0
-console.log(solution('CBD', ['AEF', 'ZJW'])); // 2
-console.log(solution('CBDK', ['CB', 'CXYB', 'BD', 'AECD', 'ABC', 'AEX', 'CDB', 'CBKD', 'IJCB', 'LMDK'])); // 4
-
 // Use filter()
 function solution(skill, skill_trees) {
   function isCorrect(n) {
@@ -44,4 +37,27 @@ function solution(skill, skill_trees) {
   }
 
   return skill_trees.filter(isCorrect).length;
+}
+
+// Use set
+function solution2(skill, skill_trees) {
+  let answer = 0;
+
+  const set = new Set(skill);
+
+  for (const skillTree of skill_trees) {
+    const arr = skill.split('');
+    for (let i = 0; i < skillTree.length; i++) {
+      if (!set.has(skillTree[i])) continue;
+      if (!arr.length) break;
+      if (arr.shift() !== skillTree[i]) break;
+      if (!arr.length || i === skillTree.length - 1) {
+        console.log(skillTree);
+        answer++;
+        break;
+      }
+    }
+  }
+
+  return answer;
 }
