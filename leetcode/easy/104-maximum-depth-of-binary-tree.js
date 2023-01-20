@@ -43,3 +43,10 @@ var maxDepth = function (root) {
   }
   return depth;
 };
+
+// Jan 20, 2023
+// use DFS
+var maxDepth = function (root) {
+  if (!root) return 0;
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+};
