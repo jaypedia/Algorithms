@@ -1,25 +1,24 @@
-// 두 정수 A와 B를 입력받은 다음, A/B를 출력하는 프로그램을 작성하시오.
+// 2021-11-05
+// https://www.acmicpc.net/problem/1008
 
+// Solution 1
 const fs = require('fs');
-const inputData = fs.readFileSync('dev/stdin').toString().split(' ');
 
-const A = parseInt(inputData[0]);
-const B = parseInt(inputData[1]);
+const inputData = fs.readFileSync('/dev/stdin').toString().split(' ');
+
+const A = Number(inputData[0]);
+const B = Number(inputData[1]);
 
 console.log(A / B);
 
-// Another way
+// Solution 2
 const fs = require('fs');
-const input = fs
-  .readFileSync('/dev/stdin')
-  .toString()
-  .trim()
-  .split(' ')
-  .map(Number);
+
+const input = fs.readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
+
 console.log(input[0] / input[1]);
 
-// Other solution : readline
-// readline 모듈을 import
+// Solution 3
 const readline = require('readline');
 
 // 인터페이스 객체 생성
@@ -31,11 +30,7 @@ const rl = readline.createInterface({
 
 rl.on('line', function (line) {
   const input = line.split(' ');
-
   const result = Number(input[0]) / Number(input[1]);
   console.log(result);
-
   rl.close();
-}).on('close', function () {
-  process.exit();
-});
+}).on('close', () => process.exit());
