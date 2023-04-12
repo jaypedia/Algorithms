@@ -1,7 +1,7 @@
 // Nov 5, 2021
 // https://www.acmicpc.net/problem/2438
 
-// file system
+// Solution 1
 const fs = require('fs');
 const inputData = fs.readFileSync('/dev/stdin').toString().split(' ');
 const num = Number(inputData);
@@ -15,7 +15,7 @@ for (let i = 0; i < num; i++) {
 
 console.log(star);
 
-// readline
+// Solution 2
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -36,14 +36,19 @@ rl.on('line', (line) => {
   return solution(n);
 }).on('close', () => process.exit());
 
-// JavaScript solution
-function star(n) {
-  let star = '';
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j <= i; j++) {
-      star += '*';
-    }
-    star += '\n';
+// Feb 11, 2023
+const fs = require('fs');
+const number = Number(fs.readFileSync('/dev/stdin').toString());
+
+const makeStarTree = (number) => {
+  let tree = '';
+  for (let i = 1; i <= number; i++) {
+    tree += '*'.repeat(i);
+    if (i !== number) tree += '\n';
   }
-  return star;
-}
+  return tree;
+};
+
+const starTree = makeStarTree(number);
+
+console.log(starTree);
