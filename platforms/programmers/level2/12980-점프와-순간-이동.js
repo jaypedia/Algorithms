@@ -15,3 +15,8 @@ function solution(n) {
 
   return ans;
 }
+
+// May 1, 2023
+function solution(n) {
+  return n.toString(2).replace(/0/g, '').length;
+}
