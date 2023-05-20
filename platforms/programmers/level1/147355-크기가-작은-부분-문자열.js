@@ -25,8 +25,22 @@ function solution(t, p) {
 function solution(t, p) {
   let count = 0;
   for (let i = 0; i <= t.length - p.length; i++) {
-    let value = t.slice(i, i + p.length);
+    const value = t.slice(i, i + p.length);
     if (+p >= +value) count++;
   }
   return count;
+}
+
+// Review: May 20, 2023
+function solution(t, p) {
+  let answer = 0;
+  const length = p.length;
+  const pNum = Number(p);
+
+  for (let i = 0; i <= t.length - length; i++) {
+    const curNum = Number(t.slice(i, i + length));
+    if (curNum <= pNum) answer++;
+  }
+
+  return answer;
 }
