@@ -34,3 +34,16 @@ function solution(s) {
 
   return stack.length ? 0 : 1;
 }
+
+// Review: July 1, 2023
+function solution(s) {
+  const stack = [];
+
+  for (const letter of s) {
+    const top = stack[stack.length - 1];
+    if (top === letter) stack.pop();
+    else stack.push(letter);
+  }
+
+  return stack.length === 0 ? 1 : 0;
+}
