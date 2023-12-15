@@ -40,3 +40,9 @@ var minimumSum = function (num) {
   const arr = num.toString().split('').map(Number).sort();
   return (arr[0] + arr[1]) * 10 + arr[2] + arr[3];
 };
+
+// Dec 15, 2023
+var minimumSum = function(num) {
+  const [one, two, three, four] = num.toString().split('').sort();
+  return Number(one + three) + Number(two + four)
+};
